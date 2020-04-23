@@ -11,6 +11,10 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
     font-family: 'Montserrat', sans-serif;
   }
+  a {
+    text-decoration: none;
+    color: #000;
+  }
 `
 
 const Layout = ({ children }) => {

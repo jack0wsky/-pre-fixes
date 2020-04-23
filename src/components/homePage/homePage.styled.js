@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { mobile } from "../breakpoints/breakpoints"
+import { mobile, medium } from "../breakpoints/breakpoints"
 
 export const HomeWrapper = styled.main`
   width: 100vw;
@@ -25,6 +25,14 @@ export const HomeContent = styled.section`
     height: 90%;
     justify-content: flex-start;
     width: 80%;
+  }
+  @media all and (min-width: ${mobile}) and (max-width: ${medium}) {
+    height: 70%;
+    width: 80%;
+  }
+
+  @media all and (min-width: 1100px) and (max-width: 1401px) {
+    height: 65%;
   }
 `
 export const HomeBackground = styled.section`
@@ -86,6 +94,13 @@ export const ContentHead = styled.section`
   h2:nth-child(2) {
     width: 10vw;
   }
+  @media all and (max-width: 1401px) {
+    h2:nth-child(2) {
+      width: 20vw;
+      display: flex;
+      justify-content: center;
+    }
+  }
 `
 export const Title = styled.h2`
   font-size: 4em;
@@ -114,6 +129,9 @@ export const SearchInput = styled.input`
     width: 100%;
     height: 70px;
     margin: 5vw 0 5vw;
+  }
+  @media all and (min-width: ${mobile}) and (max-width: ${medium}) {
+    width: 50%;
   }
 `
 export const Or = styled.p`
@@ -145,6 +163,9 @@ export const ActionBtn = styled.button`
     width: 100%;
     height: 70px;
     margin: 5vw 0 5vw;
+  }
+  @media all and (min-width: ${mobile}) and (max-width: ${medium}) {
+    width: 50%;
   }
 `
 export const Icon = styled.img`

@@ -16,6 +16,7 @@ import {
 import dotgrid from "../../static/dotgrid.svg"
 import explore from "../../static/globe.svg"
 import Browser from "../browsers/browser"
+import Result from "../result"
 
 class Home extends Component {
   state = {
@@ -65,6 +66,7 @@ class Home extends Component {
             <Icon style={{ width: 30 }} src={explore} />
             Explore all
           </ActionBtn>
+          <Result />
         </HomeContent>
         <HomeBackground>
           <GreenShape></GreenShape>

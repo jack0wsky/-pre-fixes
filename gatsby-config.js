@@ -6,6 +6,7 @@ module.exports = {
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
+    "gatsby-theme-apollo",
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -37,15 +38,13 @@ module.exports = {
       resolve: "gatsby-source-graphql",
       options: {
         // Arbitrary name for the remote schema Query type
-        typeName: "SWAPI",
+        typeName: "VENDOR",
         // Field under which the remote schema will be accessible. You'll use this in your Gatsby query
-        fieldName: "swapi",
+        fieldName: "vendor",
         // Url to query from
-        url: "https://swapi-graphql.netlify.com/.netlify/functions/index",
+        url:
+          "https://api-eu-central-1.graphcms.com/v2/ck9bubr8609f101yy3yt05dsw/master",
       },
     },
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.dev/offline
-    // `gatsby-plugin-offline`,
   ],
 }
