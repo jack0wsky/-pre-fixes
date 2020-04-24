@@ -4,7 +4,7 @@ import { mobile, medium } from "../breakpoints/breakpoints"
 export const HomeWrapper = styled.main`
   width: 100vw;
   height: 90vh;
-  background-color: #fff;
+  background-color: ${props => props.theme.colors.background};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -21,6 +21,7 @@ export const HomeContent = styled.section`
   align-items: center;
   -webkit-align-items: center;
   justify-content: space-evenly;
+
   @media all and (max-width: ${mobile}) {
     height: 90%;
     justify-content: flex-start;
@@ -50,7 +51,8 @@ export const GreenShape = styled.div`
   left: 0;
   width: 45%;
   height: 62%;
-  background-color: rgb(35, 150, 149, 0.15);
+  background-color: ${props => props.theme.colors.backgroundGreen};
+  //background-color:
   border-radius: 0 50px 0 0;
 
   @media all and (max-width: ${mobile}) {
@@ -104,6 +106,7 @@ export const ContentHead = styled.section`
 `
 export const Title = styled.h2`
   font-size: 4em;
+  color: ${props => props.theme.colors.fontColor};
   @media all and (max-width: ${mobile}) {
     font-size: 3.2em;
   }
@@ -112,19 +115,26 @@ export const SearchInput = styled.input`
   height: 60px;
   width: 35%;
   font-family: "JetBrains Mono", serif;
-  padding: 10px 10px 10px 50px;
-  border: none;
-  background-color: #e5e5e5;
-  background-image: url("../../static/search.svg");
-  background-repeat: no-repeat;
-  background-position: center;
+  padding: 10px 10px 10px 20px;
+  background: none;
+  border: 2px solid #cdcdcd;
   border-radius: 10px;
+  transition: 0.3s ease-in-out;
+  -webkit-transition: 0.3s ease-in-out;
+  -o-transition: 0.3s ease-in-out;
   font-size: 1.2em;
   position: relative;
   z-index: 2;
+  color: ${props => props.theme.colors.fontColor};
+
   :focus {
     outline: none;
+    border: 2px solid ${props => props.theme.colors.action};
   }
+  :hover {
+    border: 2px solid ${props => props.theme.colors.action};
+  }
+
   @media all and (max-width: ${mobile}) {
     width: 100%;
     height: 70px;
@@ -136,6 +146,7 @@ export const SearchInput = styled.input`
 `
 export const Or = styled.p`
   position: relative;
+  color: ${props => props.theme.colors.fontColor};
   z-index: 2;
 `
 export const ActionBtn = styled.button`
@@ -155,9 +166,32 @@ export const ActionBtn = styled.button`
   -webkit-align-items: center;
   justify-content: center;
   -webkit-justify-content: center;
+  transition: transform 0.4s ease-in-out;
+  overflow: hidden;
 
   :focus {
     outline: none;
+  }
+  :hover {
+    transition: transform 0.4s ease-in-out;
+    transform: scale(1.05);
+  }
+
+  :before {
+    content: "";
+    display: block;
+    height: 100%;
+    width: 50px;
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: skew(-20deg, 0deg);
+    left: -15vw;
+    position: absolute;
+    z-index: 0;
+    transition: 0.2s ease-in-out;
+  }
+  :hover:before {
+    left: 110%;
+    transition: 0.2s ease-in-out;
   }
   @media all and (max-width: ${mobile}) {
     width: 100%;

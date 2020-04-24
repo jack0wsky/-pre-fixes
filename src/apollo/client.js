@@ -4,7 +4,8 @@ import fetch from "isomorphic-fetch"
 export const client = new ApolloClient({
   cache: new InMemoryCache(),
   link: new HttpLink({
-    uri: "https://api-euwest.graphcms.com/v1/cjke2kn7p00ol01d2pinkptdj/master",
+    uri:
+      "https://api-eu-central-1.graphcms.com/v2/ck9bubr8609f101yy3yt05dsw/master",
     fetch,
   }),
 })

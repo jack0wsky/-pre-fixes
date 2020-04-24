@@ -9,7 +9,7 @@ export const HeaderWrapper = styled.header`
   align-items: center;
   -webkit-align-items: center;
   padding: 0 5vw 0;
-  background-color: #fff;
+  background-color: ${props => props.theme.colors.background};
   justify-content: space-between;
   -webkit-justify-content: space-between;
 `
@@ -27,7 +27,7 @@ export const SVG = styled.img`
 `
 export const Nav = styled.nav`
   display: flex;
-  width: 30%;
+  width: 20%;
   align-items: center;
   -webkit-align-items: center;
   justify-content: space-between;
@@ -46,6 +46,7 @@ export const NavBtn = styled.button`
   cursor: pointer;
   display: flex;
   transition: 0.3s ease-in-out;
+  color: ${props => props.theme.colors.fontColor};
 
   :focus {
     outline: none;
@@ -67,6 +68,28 @@ export const NavBtn = styled.button`
     opacity: 1;
     transform: translateX(-1vw);
   }
+`
+export const ToggleTheme = styled.button`
+  border: 4px solid rgb(35, 150, 149);
+  width: 50px;
+  border-radius: 20px;
+  height: 25px;
+  background: none;
+  position: relative;
+  cursor: pointer;
+  :focus {
+    outline: none;
+  }
+`
+export const Dot = styled.span`
+  position: absolute;
+  height: 70%;
+  left: ${props => (props.darkMode ? "50%" : "5%")};
+  top: 2px;
+  transition: 0.3s ease-in-out;
+  width: 40%;
+  background-color: rgb(35, 150, 149);
+  border-radius: 20px;
 `
 
 export const BurgerMenu = styled.section`
@@ -143,10 +166,11 @@ export const BurgerNav = styled.nav`
   z-index: 90;
   width: 80vw;
   height: 100vh;
-  background-color: #fff;
+  background-color: ${props => props.theme.colors.greyBackground};
   transition: all 0.3s cubic-bezier(0.77, 0.2, 0.05, 1);
   left: ${props => (props.menu === false ? "-80vw" : 0)};
   bottom: 0;
+  overflow: hidden;
 
   padding: 5vw 5vw 30vw;
   display: flex;
@@ -155,6 +179,22 @@ export const BurgerNav = styled.nav`
   justify-content: flex-end;
   -webkit-justify-content: flex-end;
 `
+export const DotGridBurger = styled.div`
+  width: 20%;
+  height: 70%;
+  display: flex;
+  justify-content: center;
+  -webkit-justify-content: center;
+  align-items: center;
+  -webkit-align-items: center;
+  position: absolute;
+  right: -10vw;
+  bottom: 5vw;
+`
+export const GridBurger = styled.img`
+  height: 100%;
+  opacity: 0.4;
+`
 export const BurgerLinks = styled.button`
   border: none;
   font-size: 2.8em;
@@ -162,6 +202,8 @@ export const BurgerLinks = styled.button`
   line-height: 2em;
   cursor: pointer;
   transition: 0.3s ease-in-out;
+  color: ${props => props.theme.colors.fontColor};
+  background: none;
 
   display: flex;
   :hover {

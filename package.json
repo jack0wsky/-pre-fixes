@@ -12,27 +12,34 @@
     "babel-plugin-styled-components": "^1.10.7",
     "es6-promise": "^4.2.8",
     "gatsby": "^2.20.25",
+    "gatsby-cli": "^2.11.18",
     "gatsby-image": "^2.3.4",
+    "gatsby-plugin-apollo": "^3.0.1",
     "gatsby-plugin-manifest": "^2.3.5",
     "gatsby-plugin-offline": "^3.1.4",
     "gatsby-plugin-react-helmet": "^3.2.4",
     "gatsby-plugin-sharp": "^2.5.6",
     "gatsby-plugin-styled-components": "^3.2.3",
+    "gatsby-plugin-transition-link": "^1.18.0",
     "gatsby-source-filesystem": "^2.2.4",
     "gatsby-source-graphql": "^2.4.2",
     "gatsby-theme-apollo": "^3.0.2",
     "gatsby-transformer-sharp": "^2.4.6",
     "graphql-tag": "^2.10.3",
+    "gsap": "^3.2.6",
     "isomorphic-fetch": "^2.2.1",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
     "react-apollo": "^3.1.5",
     "react-dom": "^16.12.0",
     "react-helmet": "^6.0.0",
+    "react-redux": "^7.2.0",
+    "redux": "^4.0.5",
     "styled-components": "^5.1.0"
   },
   "devDependencies": {
-    "prettier": "2.0.4"
+    "prettier": "2.0.4",
+    "redux-devtools": "^3.5.0"
   },
   "keywords": [
     "gatsby"

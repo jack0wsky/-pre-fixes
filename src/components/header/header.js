@@ -10,32 +10,49 @@ import {
   Path,
   BurgerNav,
   BurgerLinks,
+  ToggleTheme,
+  Dot,
+  DotGridBurger,
+  GridBurger,
 } from "./header.styled"
-import { Link } from "gatsby"
-import logo from "../../static/logo.svg"
+
+import AniLink from "gatsby-plugin-transition-link/AniLink"
+import logoLight from "../../static/-pre-fixes.svg"
+import logoDark from "../../static/-pre-fixes-dark.svg"
+import { useSelector, useDispatch } from "react-redux"
+import { isDarkMode } from "../../actions"
+import dotgrid from "../../static/dotgrid.svg"
 
 const Header = () => {
   const [isMenu, setMenu] = useState(false)
+  const darkMode = useSelector(state => state.darkMode)
+  const dispatch = useDispatch()
   return (
-    <HeaderWrapper>
+    <HeaderWrapper darkmode={darkMode}>
       <Logo>
-        <SVG src={logo} />
+        <SVG src={darkMode ? logoDark : logoLight} />
       </Logo>
       <Nav>
-        <Link to="/">
+        <AniLink paintDrip to="/">
           <NavBtn>Home</NavBtn>
-        </Link>
-        <Link to="/explore">
+        </AniLink>
+        <AniLink paintDrip to="/explore">
           <NavBtn>Explore</NavBtn>
-        </Link>
+        </AniLink>
       </Nav>
+      <ToggleTheme onClick={() => dispatch(isDarkMode())}>
+        <Dot darkMode={darkMode}></Dot>
+      </ToggleTheme>
       <BurgerNav menu={isMenu}>
-        <Link to="/">
+        <AniLink paintDrip to="/">
           <BurgerLinks>Home</BurgerLinks>
-        </Link>
-        <Link to="/explore">
+        </AniLink>
+        <AniLink paintDrip to="/explore">
           <BurgerLinks>Explore</BurgerLinks>
-        </Link>
+        </AniLink>
+        <DotGridBurger>
+          <GridBurger src={dotgrid} alt="dotgrid" />
+        </DotGridBurger>
       </BurgerNav>
       <BurgerMenu>
         <BurgerIcon menu={isMenu} onClick={() => setMenu(!isMenu)}>

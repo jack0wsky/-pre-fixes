@@ -5,13 +5,15 @@ import {
   Navigator,
   Content,
   Head,
+  List,
+  Statement,
 } from "../explore/explore.styled"
 import { Query } from "react-apollo"
 import gql from "graphql-tag"
-import { graphql, StaticQuery } from "gatsby"
+import { Link } from "gatsby"
 
 const STYLES = gql`
-  {
+  query Vendor {
     statements {
       style
     }
@@ -25,6 +27,21 @@ class Explore extends Component {
         <ExploreWrapper>
           <Navigator>
             <Head>Explore</Head>
+            <List>
+              <Query query={STYLES}>
+                {({ loading, data }) => {
+                  if (loading) return <p>loading...</p>
+                  const { statements } = data
+                  return statements.map(statement => {
+                    return (
+                      <Link to="/home">
+                        <Statement>{statement.style}</Statement>
+                      </Link>
+                    )
+                  })
+                }}
+              </Query>
+            </List>
           </Navigator>
           <Content></Content>
         </ExploreWrapper>

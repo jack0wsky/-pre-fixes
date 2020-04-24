@@ -6,7 +6,7 @@ module.exports = {
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
-    "gatsby-theme-apollo",
+    `gatsby-plugin-transition-link`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -30,18 +30,13 @@ module.exports = {
     },
     {
       resolve: `gatsby-plugin-styled-components`,
-      options: {
-        // Add any options here
-      },
+      options: {},
     },
     {
       resolve: "gatsby-source-graphql",
       options: {
-        // Arbitrary name for the remote schema Query type
         typeName: "VENDOR",
-        // Field under which the remote schema will be accessible. You'll use this in your Gatsby query
         fieldName: "vendor",
-        // Url to query from
         url:
           "https://api-eu-central-1.graphcms.com/v2/ck9bubr8609f101yy3yt05dsw/master",
       },

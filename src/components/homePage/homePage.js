@@ -4,6 +4,8 @@ import {
   HomeContent,
   ContentHead,
   Title,
+  Search,
+  BorderSpan,
   SearchInput,
   ActionBtn,
   Or,
@@ -16,11 +18,12 @@ import {
 import dotgrid from "../../static/dotgrid.svg"
 import explore from "../../static/globe.svg"
 import Browser from "../browsers/browser"
-import Result from "../result"
+import SearchResult from "../searchResult/searchResult"
 
 class Home extends Component {
   state = {
     counter: 0,
+    search: "",
   }
   componentDidMount() {
     setInterval(() => {
@@ -30,6 +33,10 @@ class Home extends Component {
         this.setState({ counter: 0 })
       }
     }, 3000)
+  }
+
+  handleSearch = e => {
+    this.setState({ [e.target.name]: e.target.value })
   }
 
   changeBrowser = () => {
@@ -60,13 +67,19 @@ class Home extends Component {
             {this.changeBrowser()}
             <Title>compatible</Title>
           </ContentHead>
-          <SearchInput type="text" placeholder="Find prefixes for your code" />
+          <SearchInput
+            value={this.state.search}
+            autoComplete="off"
+            name="search"
+            onChange={e => this.handleSearch(e)}
+            type="text"
+            placeholder="Find prefixes for your code"
+          />
           <Or>OR</Or>
           <ActionBtn>
             <Icon style={{ width: 30 }} src={explore} />
             Explore all
           </ActionBtn>
-          <Result />
         </HomeContent>
         <HomeBackground>
           <GreenShape></GreenShape>
@@ -74,6 +87,7 @@ class Home extends Component {
             <Grid src={dotgrid} alt="dotgrid" />
           </DotGrid>
         </HomeBackground>
+        <SearchResult search={this.state.search} />
       </HomeWrapper>
     )
   }
