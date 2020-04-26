@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { mobile, medium } from "../breakpoints/breakpoints"
+import { mobile, medium, large } from "../breakpoints/breakpoints"
 
 export const HeaderWrapper = styled.header`
   width: 100vw;
@@ -25,9 +25,28 @@ export const Logo = styled.div`
 export const SVG = styled.img`
   width: 50%;
 `
+export const Links = styled.section`
+  width: 35%;
+  display: flex;
+  align-items: center;
+  -webkit-align-items: center;
+  justify-content: space-between;
+  -webkit-justify-content: space-between;
+
+  @media all and (max-width: ${mobile}) {
+    justify-content: flex-end;
+    -webkit-justify-content: flex-end;
+  }
+  @media all and (min-width: ${mobile}) and (max-width: ${medium}) {
+    width: 50%;
+  }
+  @media all and (min-width: ${medium}) and (max-width: ${large}) {
+    width: 40%;
+  }
+`
 export const Nav = styled.nav`
   display: flex;
-  width: 20%;
+  width: 60%;
   align-items: center;
   -webkit-align-items: center;
   justify-content: space-between;
@@ -46,6 +65,8 @@ export const NavBtn = styled.button`
   cursor: pointer;
   display: flex;
   transition: 0.3s ease-in-out;
+  -webkit-transition: 0.3s ease-in-out;
+  -o-transition: 0.3s ease-in-out;
   color: ${props => props.theme.colors.fontColor};
 
   :focus {
@@ -53,7 +74,11 @@ export const NavBtn = styled.button`
   }
   :hover {
     transition: 0.3s ease-in-out;
+    -webkit-transition: 0.3s ease-in-out;
+    -o-transition: 0.3s ease-in-out;
     transform: translateX(1vw);
+    -webkit-transform: translateX(1vw);
+    -ms-transform: translateX(1vw);
   }
   :before {
     content: "/";
@@ -62,34 +87,54 @@ export const NavBtn = styled.button`
     height: 100%;
     color: rgb(35, 150, 149);
     transition: 0.3s ease-in-out;
+    -webkit-transition: 0.3s ease-in-out;
+    -o-transition: 0.3s ease-in-out;
   }
   :hover:before {
     transition: 0.3s ease-in-out;
+    -webkit-transition: 0.3s ease-in-out;
+    -o-transition: 0.3s ease-in-out;
     opacity: 1;
     transform: translateX(-1vw);
+    -webkit-transform: translateX(-1vw);
+    -ms-transform: translateX(-1vw);
   }
 `
 export const ToggleTheme = styled.button`
-  border: 4px solid rgb(35, 150, 149);
+  @supports (-webkit-appearance: none) or (-moz-appearance: none) {
+    input[type="checkbox"] {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+    }
+  }
   width: 50px;
-  border-radius: 20px;
+  border-radius: 50px;
   height: 25px;
-  background: none;
+  background: rgb(35, 150, 149);
+  border: none;
   position: relative;
   cursor: pointer;
+
   :focus {
     outline: none;
   }
-`
-export const Dot = styled.span`
-  position: absolute;
-  height: 70%;
-  left: ${props => (props.darkMode ? "50%" : "5%")};
-  top: 2px;
-  transition: 0.3s ease-in-out;
-  width: 40%;
-  background-color: rgb(35, 150, 149);
-  border-radius: 20px;
+  :after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 3px;
+    left: 4px;
+    transform: translateX(5px);
+    -webkit-transform: translateX(5px);
+    -ms-transform: translateX(5px);
+    background-color: #fff;
+    height: 18px;
+    border-radius: 50px;
+    width: 18px;
+  }
+  :checked {
+    background: rgb(112, 112, 112);
+  }
 `
 
 export const BurgerMenu = styled.section`
@@ -102,7 +147,7 @@ export const BurgerMenu = styled.section`
     position: fixed;
     bottom: 5vw;
     left: 5vw;
-    z-index: 100;
+    z-index: 999;
   }
 `
 export const BurgerIcon = styled.div`
@@ -146,7 +191,13 @@ export const BurgerIcon = styled.div`
     span:nth-child(3) {
       transform: ${props =>
         props.menu === false ? null : "translateX(5px) rotate(-45deg)"};
+      -webkit-transform: ${props =>
+        props.menu === false ? null : "translateX(5px) rotate(-45deg)"};
+      -ms-transform: ${props =>
+        props.menu === false ? null : "translateX(5px) rotate(-45deg)"};
       transition: 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+      -webkit-transition: 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+      -o-transition: 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
       transform-origin: 0 50%;
       width: ${props => (props.menu === false ? "40%" : "45%")};
     }
@@ -159,25 +210,30 @@ export const Path = styled.span`
   border-radius: 3px;
   background-color: #fff;
   transition: 0.3s ease-in-out;
+  -webkit-transition: 0.3s ease-in-out;
+  -o-transition: 0.3s ease-in-out;
   transform-origin: 0 0;
 `
 export const BurgerNav = styled.nav`
-  position: absolute;
-  z-index: 90;
-  width: 80vw;
-  height: 100vh;
-  background-color: ${props => props.theme.colors.greyBackground};
-  transition: all 0.3s cubic-bezier(0.77, 0.2, 0.05, 1);
-  left: ${props => (props.menu === false ? "-80vw" : 0)};
-  bottom: 0;
-  overflow: hidden;
+  display: none;
+  @media all and (max-width: ${mobile}) {
+    position: absolute;
+    z-index: 999;
+    width: 80vw;
+    height: 100vh;
+    background-color: ${props => props.theme.colors.greyBackground};
+    transition: all 0.3s cubic-bezier(0.77, 0.2, 0.05, 1);
+    left: ${props => (props.menu === false ? "-80vw" : 0)};
+    bottom: 0;
+    overflow: hidden;
 
-  padding: 5vw 5vw 30vw;
-  display: flex;
-  flex-flow: column;
-  -webkit-flex-flow: column;
-  justify-content: flex-end;
-  -webkit-justify-content: flex-end;
+    padding: 5vw 5vw 30vw;
+    display: flex;
+    flex-flow: column;
+    -webkit-flex-flow: column;
+    justify-content: flex-end;
+    -webkit-justify-content: flex-end;
+  }
 `
 export const DotGridBurger = styled.div`
   width: 20%;
@@ -202,13 +258,20 @@ export const BurgerLinks = styled.button`
   line-height: 2em;
   cursor: pointer;
   transition: 0.3s ease-in-out;
+  -webkit-transition: 0.3s ease-in-out;
+  -o-transition: 0.3s ease-in-out;
   color: ${props => props.theme.colors.fontColor};
   background: none;
 
   display: flex;
   :hover {
     transform: translateX(4vw);
+    -webkit-transform: translateX(4vw);
+    -ms-transform: translateX(4vw);
     color: rgb(35, 150, 149);
+  }
+  :focus {
+    outline: none;
   }
   :before {
     content: "/";
@@ -217,10 +280,16 @@ export const BurgerLinks = styled.button`
     color: rgb(35, 150, 149);
     opacity: 0;
     transition: 0.3s ease-in-out;
+    -webkit-transition: 0.3s ease-in-out;
+    -o-transition: 0.3s ease-in-out;
   }
   :hover:before {
     opacity: 1;
     transform: translateX(-4vw);
+    -webkit-transform: translateX(-4vw);
+    -ms-transform: translateX(-4vw);
     transition: 0.3s ease-in-out;
+    -webkit-transition: 0.3s ease-in-out;
+    -o-transition: 0.3s ease-in-out;
   }
 `

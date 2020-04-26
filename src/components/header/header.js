@@ -2,6 +2,7 @@ import React, { useState } from "react"
 import {
   HeaderWrapper,
   Logo,
+  Links,
   Nav,
   NavBtn,
   SVG,
@@ -11,7 +12,6 @@ import {
   BurgerNav,
   BurgerLinks,
   ToggleTheme,
-  Dot,
   DotGridBurger,
   GridBurger,
 } from "./header.styled"
@@ -21,7 +21,7 @@ import logoLight from "../../static/-pre-fixes.svg"
 import logoDark from "../../static/-pre-fixes-dark.svg"
 import { useSelector, useDispatch } from "react-redux"
 import { isDarkMode } from "../../actions"
-import dotgrid from "../../static/dotgrid.svg"
+import dotGrid from "../../static/dotgrid.svg"
 
 const Header = () => {
   const [isMenu, setMenu] = useState(false)
@@ -32,26 +32,51 @@ const Header = () => {
       <Logo>
         <SVG src={darkMode ? logoDark : logoLight} />
       </Logo>
-      <Nav>
-        <AniLink paintDrip to="/">
-          <NavBtn>Home</NavBtn>
-        </AniLink>
-        <AniLink paintDrip to="/explore">
-          <NavBtn>Explore</NavBtn>
-        </AniLink>
-      </Nav>
-      <ToggleTheme onClick={() => dispatch(isDarkMode())}>
-        <Dot darkMode={darkMode}></Dot>
-      </ToggleTheme>
+      <Links>
+        <Nav>
+          <AniLink
+            cover
+            direction="right"
+            bg={darkMode ? "black" : "white"}
+            duration={1}
+            to="/"
+          >
+            <NavBtn>Home</NavBtn>
+          </AniLink>
+          <AniLink
+            cover
+            direction="left"
+            bg={darkMode ? "black" : "white"}
+            to="/explore"
+            duration={1}
+          >
+            <NavBtn>Explore</NavBtn>
+          </AniLink>
+        </Nav>
+        <ToggleTheme type="checkbox" onClick={() => dispatch(isDarkMode())} />
+      </Links>
       <BurgerNav menu={isMenu}>
-        <AniLink paintDrip to="/">
+        <AniLink
+          cover
+          direction="right"
+          bg={darkMode ? "black" : "white"}
+          duration={1}
+          to="/"
+        >
           <BurgerLinks>Home</BurgerLinks>
         </AniLink>
-        <AniLink paintDrip to="/explore">
+        <AniLink
+          cover
+          direction="left"
+          bg={darkMode ? "black" : "white"}
+          to="/explore"
+          duration={1}
+          to="/explore"
+        >
           <BurgerLinks>Explore</BurgerLinks>
         </AniLink>
         <DotGridBurger>
-          <GridBurger src={dotgrid} alt="dotgrid" />
+          <GridBurger src={dotGrid} alt="dotgrid" />
         </DotGridBurger>
       </BurgerNav>
       <BurgerMenu>

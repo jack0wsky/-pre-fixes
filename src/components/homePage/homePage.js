@@ -4,8 +4,6 @@ import {
   HomeContent,
   ContentHead,
   Title,
-  Search,
-  BorderSpan,
   SearchInput,
   ActionBtn,
   Or,
@@ -15,10 +13,11 @@ import {
   Grid,
   Icon,
 } from "./homePage.styled"
-import dotgrid from "../../static/dotgrid.svg"
+import dotGrid from "../../static/dotgrid.svg"
 import explore from "../../static/globe.svg"
 import Browser from "../browsers/browser"
 import SearchResult from "../searchResult/searchResult"
+import anime from "animejs/lib/anime.es"
 
 class Home extends Component {
   state = {
@@ -26,6 +25,19 @@ class Home extends Component {
     search: "",
   }
   componentDidMount() {
+    const tl = anime.timeline({
+      duration: 1700,
+      easing: "cubicBezier(.5, .05, .1, .3)",
+    })
+    tl.add({
+      targets: "#greenShape",
+      translateY: ["30vw", 0],
+      duration: 700,
+    }).add({
+      targets: "#dotGrid",
+      opacity: [0, 1],
+      duration: 1000,
+    })
     setInterval(() => {
       if (this.state.counter < 3) {
         this.setState(prevState => ({ counter: prevState.counter + 1 }))
@@ -82,9 +94,9 @@ class Home extends Component {
           </ActionBtn>
         </HomeContent>
         <HomeBackground>
-          <GreenShape></GreenShape>
-          <DotGrid>
-            <Grid src={dotgrid} alt="dotgrid" />
+          <GreenShape id="greenShape"></GreenShape>
+          <DotGrid id="dotGrid">
+            <Grid src={dotGrid} alt="dotgrid" />
           </DotGrid>
         </HomeBackground>
         <SearchResult search={this.state.search} />

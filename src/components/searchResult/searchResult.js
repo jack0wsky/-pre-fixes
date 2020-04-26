@@ -2,24 +2,23 @@ import React, { Component } from "react"
 import {
   SearchWrapper,
   CodeArea,
-  Textarea,
-  CopyIcon,
-  Icon,
-  Suggestions,
-  CloseResult,
-  Control,
-  Result,
+  Hint,
+  CodeSnippet,
+  TextArea,
 } from "./searchResult.styled"
 import gql from "graphql-tag"
 import { Query } from "react-apollo"
 import copy from "../../static/copy.svg"
+import { CodeComment } from "../../explore/explore.styled"
 
 const SEARCH = gql`
   query RESULT($search: String) {
     properties(where: { _search: $search }) {
       prop
+      key
       statement {
         style
+        key
         properties(where: { prop_not_contains: $search }) {
           prop
         }
@@ -29,23 +28,28 @@ const SEARCH = gql`
 `
 
 class SearchResult extends Component {
+  state = {
+    copyCode: "",
+  }
   moveTab = () => {}
 
   copyResult = e => {
-    e.target.select()
-    document.execCommand("copy")
+    const homeText = document.querySelector("#homeText")
+    this.setState({ copyCode: e.target.innerText }, () => {
+      homeText.select()
+      document.execCommand("copy")
+      console.log("copied")
+    })
   }
 
   render() {
     const { search } = this.props
     return (
       <SearchWrapper onMouseDown={() => this.moveTab()} search={search}>
-        <CloseResult>
-          <Control></Control>
-        </CloseResult>
-        <Result>
+        {search !== "" ? (
           <CodeArea id="codeArea">
-            {search !== "" ? (
+            <CodeSnippet readOnly>
+              <TextArea id="homeText" readOnly value={this.state.copyCode} />
               <Query
                 query={SEARCH}
                 variables={{
@@ -57,17 +61,20 @@ class SearchResult extends Component {
                   const { properties } = data
                   return properties.map(property => {
                     return (
-                      <Textarea readOnly onClick={e => this.copyResult(e)}>
-                        {property.prop}
-                      </Textarea>
+                      <span
+                        onClick={e => this.copyResult(e)}
+                        key={property.key}
+                      >
+                        {property.prop} <CodeComment>/*value*/</CodeComment>{" "}
+                      </span>
                     )
                   })
                 }}
               </Query>
-            ) : null}
+            </CodeSnippet>
+            <Hint>/*click property to copy*/</Hint>
           </CodeArea>
-          <p>click property to copy</p>
-        </Result>
+        ) : null}
       </SearchWrapper>
     )
   }

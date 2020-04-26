@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import { mobile } from "../breakpoints/breakpoints"
 
 export const SearchWrapper = styled.main`
   width: 30vw;
@@ -10,7 +11,7 @@ export const SearchWrapper = styled.main`
   right: 5vw;
   background-color: ${props => props.theme.colors.resultBackground};
   border-radius: 10px;
-  z-index: 999;
+  z-index: 100;
   overflow: hidden;
   box-shadow: 0 1px 3px -19px rgba(0, 0, 0, 0.039),
     0 2.5px 7.2px -19px rgba(0, 0, 0, 0.057),
@@ -18,76 +19,56 @@ export const SearchWrapper = styled.main`
     0 8.3px 24.1px -19px rgba(0, 0, 0, 0.083),
     0 15.5px 45.1px -19px rgba(0, 0, 0, 0.101),
     0 37px 108px -19px rgba(0, 0, 0, 0.14);
-`
-export const Result = styled.section`
-  width: 100%;
-  height: 90%;
-  padding: 1vw;
-  color: ${props => props.theme.colors.fontColor};
+
+  @media all and (max-width: ${mobile}) {
+    width: 70vw;
+    height: 40vh;
+  }
 `
 export const CodeArea = styled.section`
   font-family: "JetBrains Mono", serif;
-  border-radius: 20px;
+  border-radius: 10px;
   padding: 1vw;
   width: 100%;
-  background-color: rgb(35, 150, 149, 0.15);
+  background-color: #001f2d;
   position: relative;
   display: flex;
   flex-flow: column;
+  justify-content: space-between;
+  -webkit-justify-content: space-between;
 
   p {
     font-family: inherit;
     line-height: 1.5em;
   }
-`
-export const Textarea = styled.code`
-  font-family: inherit;
-  resize: none;
-  border: none;
-  background: none;
-  font-size: 1em;
-  height: auto;
-  color: ${props => props.theme.colors.code};
-  :focus {
-    outline: none;
+  @media all and (max-width: ${mobile}) {
+    padding: 3vw;
+    height: 100%;
   }
 `
-export const Suggestions = styled.div`
-  margin: 1vw 0 0;
+export const CodeSnippet = styled.code`
+  font-family: "JetBrains Mono", serif;
+  width: 100%;
+  border-radius: 10px;
+  padding: 1vw;
+  background-color: #001f2d;
+  color: ${props => props.theme.colors.code};
   display: flex;
   flex-flow: column;
-  -webkit-flex-flow: column;
-  height: auto;
+  position: relative;
+  transition: all 0.3s ease-in-out;
+
+  span {
+    font-family: inherit;
+    line-height: 2em;
+  }
 `
-export const CloseResult = styled.div`
-  width: 100%;
-  height: 40px;
-  background-color: ${props => props.theme.colors.resultBackground};
-  padding: 10px;
-  display: flex;
-  align-items: center;
-  -webkit-align-items: center;
+export const Hint = styled.p`
+  color: rgb(255, 255, 255, 0.6);
+  margin: 0 0 0 1vw;
+  font-style: italic;
 `
-export const Control = styled.button`
-  border: none;
-  background-color: #b42700;
-  height: 15px;
-  width: 15px;
-  border-radius: 20px;
-  cursor: pointer;
-`
-export const CopyIcon = styled.button`
+export const TextArea = styled.textarea`
   position: absolute;
-  top: 15px;
-  right: 15px;
-  width: 2vw;
-  height: 2vw;
-  border: none;
-  background: none;
-`
-export const Icon = styled.img`
-  width: 100%;
-  height: 100%;
-  cursor: pointer;
-  opacity: 0.3;
+  right: -100vw;
 `
