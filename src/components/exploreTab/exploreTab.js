@@ -18,6 +18,7 @@ const ExploreStyle = ({
   copyCode,
   changeSyntax,
   handleSyntax,
+  copied
 }) => {
   return (
     <Content>
@@ -49,7 +50,7 @@ const ExploreStyle = ({
               )
             })}
           </Code>
-          <Hint>Click code to copy</Hint>
+          <Hint>{copied}</Hint>
         </Props>
       ) : (
         <Props>

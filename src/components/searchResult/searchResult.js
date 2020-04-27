@@ -8,7 +8,6 @@ import {
 } from "./searchResult.styled"
 import gql from "graphql-tag"
 import { Query } from "react-apollo"
-import copy from "../../static/copy.svg"
 import { CodeComment } from "../../explore/explore.styled"
 
 const SEARCH = gql`
@@ -31,8 +30,17 @@ class SearchResult extends Component {
   state = {
     copyCode: "",
   }
-  moveTab = () => {}
 
+  keyCopy = e => {
+    if (e.code === 'Enter') {
+      const homeText = document.querySelector("#homeText")
+      this.setState({ copyCode: e.target.innerText }, () => {
+        homeText.select()
+        document.execCommand("copy")
+        this.props.handlePopup()
+      })
+    }
+  }
   copyResult = e => {
     const homeText = document.querySelector("#homeText")
     this.setState({ copyCode: e.target.innerText }, () => {
@@ -61,6 +69,8 @@ class SearchResult extends Component {
                   return properties.map(property => {
                     return (
                       <span
+                        role='textbox'
+                        onKeyDown={e => this.keyCopy(e)}
                         onClick={e => this.copyResult(e)}
                         key={property.key}
                       >

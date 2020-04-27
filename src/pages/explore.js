@@ -14,6 +14,7 @@ import ExploreStyle from "../components/exploreTab/exploreTab"
 import { Query } from "react-apollo"
 import gql from "graphql-tag"
 import anime from "animejs/lib/anime.es"
+import Popup from '../popup/popup'
 
 const STYLES = gql`
   query Vendor {
@@ -40,6 +41,7 @@ class Explore extends Component {
       selectedVendor: null,
       css: true,
       userValue: "",
+      copied: 'Click code to copy',
     }
     this.textArea = createRef()
   }
@@ -71,22 +73,23 @@ class Explore extends Component {
       code.textContent = this.state.textArea
       code.select()
       document.execCommand("copy")
+      this.handleCopy()
     })
   }
   showProps = statement => {
     this.setState({ selectedVendor: statement })
   }
   handleSyntax = () => {
-    console.log("clicked")
-    this.setState({ css: !this.state.css }, () => {
-      console.log(this.state.css)
-    })
+    this.setState({ css: !this.state.css })
+  }
+  handleCopy = () => {
+    this.setState({copied: 'Copied!'})
   }
   render() {
-    const { css, selectedVendor } = this.state
-    console.log(css)
+    const { selectedVendor } = this.state
     return (
       <Layout>
+        <Popup />
         <ExploreWrapper>
           <Navigator>
             <Head id="explore">Explore</Head>
@@ -116,6 +119,7 @@ class Explore extends Component {
               changeSyntax={this.state.css}
               handleSyntax={this.handleSyntax}
               copyCode={this.copyCode}
+              copied={this.state.copied}
             />
           ) : (
             <Welcome>

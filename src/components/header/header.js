@@ -71,7 +71,6 @@ const Header = () => {
           bg={darkMode ? "black" : "white"}
           to="/explore"
           duration={1}
-          to="/explore"
         >
           <BurgerLinks>Explore</BurgerLinks>
         </AniLink>
