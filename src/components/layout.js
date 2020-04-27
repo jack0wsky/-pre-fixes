@@ -5,6 +5,7 @@ import JetBrainsMedium from "../fonts/woff/JetBrainsMono-Medium.woff"
 import JetBrainsMedium2 from "../fonts/woff2/JetBrainsMono-Medium.woff2"
 import Montserrat700Woff2 from "../fonts/montserrat/montserrat-v14-latin-700.woff2"
 import Montserrat700Woff from "../fonts/montserrat/montserrat-v14-latin-700.woff"
+import Footer from './footer/footer'
 //import "./layout.css"
 
 const GlobalStyle = createGlobalStyle`
@@ -42,6 +43,7 @@ const Layout = ({ children }) => {
       <GlobalStyle />
       <Header />
       {children}
+      <Footer />
     </>
   )
 }

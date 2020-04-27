@@ -66,6 +66,13 @@ class Explore extends Component {
         easing: "linear",
       })
   }
+  componentDidUpdate() {
+    if (this.state.copied === "Copied!") {
+      setTimeout(() => {
+        this.setState({ copied: 'Click code to copy' })
+      }, 1000)
+    }
+  }
 
   copyCode = e => {
     const code = document.querySelector("#codeToCopy")
