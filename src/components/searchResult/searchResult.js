@@ -38,7 +38,7 @@ class SearchResult extends Component {
     this.setState({ copyCode: e.target.innerText }, () => {
       homeText.select()
       document.execCommand("copy")
-      console.log("copied")
+      this.props.handlePopup()
     })
   }
 
@@ -49,7 +49,6 @@ class SearchResult extends Component {
         {search !== "" ? (
           <CodeArea id="codeArea">
             <CodeSnippet readOnly>
-              <TextArea id="homeText" readOnly value={this.state.copyCode} />
               <Query
                 query={SEARCH}
                 variables={{
@@ -65,7 +64,7 @@ class SearchResult extends Component {
                         onClick={e => this.copyResult(e)}
                         key={property.key}
                       >
-                        {property.prop} <CodeComment>/*value*/</CodeComment>{" "}
+                        {property.prop} <CodeComment>/*value*/</CodeComment>;{" "}
                       </span>
                     )
                   })
@@ -75,6 +74,7 @@ class SearchResult extends Component {
             <Hint>/*click property to copy*/</Hint>
           </CodeArea>
         ) : null}
+        <TextArea id="homeText" readOnly value={this.state.copyCode} />
       </SearchWrapper>
     )
   }

@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { mobile } from "../breakpoints/breakpoints"
+import { mobile, medium } from "../breakpoints/breakpoints"
 
 export const SearchWrapper = styled.main`
   width: 30vw;
@@ -20,9 +20,30 @@ export const SearchWrapper = styled.main`
     0 15.5px 45.1px -19px rgba(0, 0, 0, 0.101),
     0 37px 108px -19px rgba(0, 0, 0, 0.14);
 
+  @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
+    backdrop-filter: blur(50px);
+    -webkit-backdrop-filter: blur(50px);
+  }
+
   @media all and (max-width: ${mobile}) {
-    width: 70vw;
-    height: 40vh;
+    width: 90%;
+    height: 30vh;
+    top: 45vh;
+    left: 50%;
+    margin-left: -45%;
+  }
+  @media all and (max-width: ${mobile}) and (max-height: ${mobile}) {
+    height: 30vh;
+    top: 50vh;
+    opacity: 1;
+    display: ${props => (props.search === "" ? 'none' : 'block')};
+  }
+  @media all and (min-width: ${mobile}) and (max-width: ${medium}) {
+    width: 40vw;
+    opacity: ${props => (props.search === "" ? 0 : 0.8)};
+    left: 50%;
+    margin-left: -20vw;
+    top: 60vh;
   }
 `
 export const CodeArea = styled.section`
@@ -43,6 +64,12 @@ export const CodeArea = styled.section`
   }
   @media all and (max-width: ${mobile}) {
     padding: 3vw;
+    height: 100%;
+  }
+  @media all and (max-width: ${mobile}) and (max-height: ${mobile}) {
+    overflow-y: scroll;
+  }
+  @media all and (min-width: ${mobile}) and (max-width: ${medium}) {
     height: 100%;
   }
 `

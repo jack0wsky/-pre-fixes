@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { mobile } from "../breakpoints/breakpoints"
+import { mobile, medium } from "../breakpoints/breakpoints"
 
 export const Content = styled.section`
   width: 75vw;
@@ -11,9 +11,13 @@ export const Content = styled.section`
 
   @media all and (max-width: ${mobile}) {
     width: 100vw;
-    height: 80%;
+    height: 70%;
     padding: 5vw;
     border-radius: 30px 30px 0 0;
+    overflow: hidden;
+  }
+  @media all and (min-width: ${mobile}) and (max-width:${medium}) {
+    width: 60vw;
   }
 `
 export const Title = styled.h2`
@@ -29,6 +33,15 @@ export const SwitchCode = styled.nav`
   display: flex;
   align-items: center;
   height: 3vw;
+  @media all and (max-width: ${mobile}) {
+    width: 100%;
+    height: 15vw;
+    margin: 2vw 0 0;
+  }
+  @media all and (min-width: ${mobile}) and (max-width:${medium}) {
+    width: 70%;
+    height: 5vw;
+  }
 `
 export const StyleText = styled.h4`
   width: max-content;
@@ -36,8 +49,11 @@ export const StyleText = styled.h4`
   background-color: ${props => props.theme.colors.action};
   border-radius: 10px;
   font-size: 1.1em;
-  color: ${props => props.theme.colors.fontColor};
+  color: #fff;
   margin: 0 1vw 0 0;
+  @media all and (max-width: ${mobile}) {
+    font-size: 1.5em;
+  }
 `
 export const StyleSyntax = styled.button`
   width: max-content;
@@ -60,6 +76,9 @@ export const StyleSyntax = styled.button`
     transition: 0.3s ease-in-out;
     -webkit-transition: 0.3s ease-in-out;
     -o-transition: 0.3s ease-in-out;
+  }
+  @media all and (max-width: ${mobile}) {
+    font-size: 1.5em;
   }
 `
 export const Hint = styled.p`
@@ -84,6 +103,10 @@ export const Code = styled.code`
 
   @media all and (max-width: ${mobile}) {
     width: 100%;
+    overflow: scroll;
+  }
+  @media all and (min-width: ${mobile}) and (max-width:${medium}) {
+    width: 100%;
   }
 `
 export const CodeComment = styled.span`
@@ -98,4 +121,8 @@ export const Props = styled.section`
   flex-flow: column;
   -webkit-flex-flow: column;
   padding: 2vw 0 0;
+
+  @media all and (max-width: ${mobile}) {
+    min-height: 30vh;
+  }
 `

@@ -18,11 +18,14 @@ import explore from "../../static/globe.svg"
 import Browser from "../browsers/browser"
 import SearchResult from "../searchResult/searchResult"
 import anime from "animejs/lib/anime.es"
+import AniLink from "gatsby-plugin-transition-link/AniLink"
+import Popup from "../../popup/popup"
 
 class Home extends Component {
   state = {
     counter: 0,
     search: "",
+    copied: false,
   }
   componentDidMount() {
     const tl = anime.timeline({
@@ -47,6 +50,12 @@ class Home extends Component {
     }, 3000)
   }
 
+  handlePopup = () => {
+    this.setState({ copied: !this.state.copied })
+  }
+  handleClosePopup = () => {
+    this.setState({ copied: false })
+  }
   handleSearch = e => {
     this.setState({ [e.target.name]: e.target.value })
   }
@@ -71,6 +80,8 @@ class Home extends Component {
     }
   }
   render() {
+    const { darkMode } = this.props
+    const { search, copied } = this.state
     return (
       <HomeWrapper>
         <HomeContent>
@@ -80,7 +91,7 @@ class Home extends Component {
             <Title>compatible</Title>
           </ContentHead>
           <SearchInput
-            value={this.state.search}
+            value={search}
             autoComplete="off"
             name="search"
             onChange={e => this.handleSearch(e)}
@@ -88,10 +99,18 @@ class Home extends Component {
             placeholder="Find prefixes for your code"
           />
           <Or>OR</Or>
-          <ActionBtn>
-            <Icon style={{ width: 30 }} src={explore} />
-            Explore all
-          </ActionBtn>
+          <AniLink
+            cover
+            direction="left"
+            bg={darkMode ? "black" : "white"}
+            to="/explore"
+            duration={1}
+          >
+            <ActionBtn>
+              <Icon style={{ width: 30 }} src={explore} />
+              Explore all
+            </ActionBtn>
+          </AniLink>
         </HomeContent>
         <HomeBackground>
           <GreenShape id="greenShape"></GreenShape>
@@ -99,7 +118,12 @@ class Home extends Component {
             <Grid src={dotGrid} alt="dotgrid" />
           </DotGrid>
         </HomeBackground>
-        <SearchResult search={this.state.search} />
+        <Popup copied={copied} handleClosePopup={this.handleClosePopup} />
+        <SearchResult
+          search={search}
+          copied={copied}
+          handlePopup={this.handlePopup}
+        />
       </HomeWrapper>
     )
   }

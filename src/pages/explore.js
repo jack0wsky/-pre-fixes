@@ -44,25 +44,24 @@ class Explore extends Component {
     this.textArea = createRef()
   }
   componentDidMount() {
-    const tl = anime.timeline({ duration: 1000, easing: "linear", delay: 400 })
+    const tl = anime.timeline({ duration: 700, delay: 400 })
     tl.add({
       targets: "#explore",
       translateY: ["2vw", 0],
       opacity: [0, 1],
-      duration: 400,
       easing: "spring(1, 80, 10, 0)",
     })
       .add({
         targets: "#welcome",
         translateX: ["2vw", 0],
         opacity: [0, 1],
-        duration: 300,
+        easing: "linear",
       })
       .add({
         targets: "#desc",
         translateY: ["-2vw", 0],
         opacity: [0, 0.4],
-        duration: 400,
+        easing: "linear",
       })
   }
 

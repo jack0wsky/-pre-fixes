@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { mobile } from "../components/breakpoints/breakpoints"
+import { mobile, medium } from "../components/breakpoints/breakpoints"
 
 export const ExploreWrapper = styled.main`
   width: 100vw;
@@ -9,6 +9,10 @@ export const ExploreWrapper = styled.main`
   @media all and (max-width: ${mobile}) {
     flex-flow: column;
     -webkit-flex-flow: column;
+    justify-content: space-between;
+    -webkit-justify-content: space-between;
+  }
+  @media all and (min-width: ${mobile}) and (max-width: ${medium}) {
     justify-content: space-between;
     -webkit-justify-content: space-between;
   }
@@ -92,14 +96,43 @@ export const Welcome = styled.section`
   -webkit-flex-flow: column;
   justify-content: center;
   -webkit-justify-content: center;
+
+  @media all and (max-width: ${mobile}) {
+    width: 100vw;
+    height: 60%;
+    text-align: center;
+    align-items: center;
+    -webkit-align-items: center;
+    justify-content: flex-start;
+    -webkit-justify-content: flex-start;
+  }
+  @media all and (min-width: ${mobile}) and (max-width: ${medium}) {
+    width: 60vw;
+    text-align: center;
+    align-items: center;
+    -webkit-align-items: center;
+    padding: 0 5vw 0 0;
+  }
 `
 export const WelcomeTitle = styled.h3`
   font-size: 3em;
   color: ${props => props.theme.colors.fontColor};
+  
+  @media all and (min-width: ${mobile}) and (max-width: ${medium}) {
+    font-size: 2.5em;
+  }
 `
 export const Description = styled.p`
   color: ${props => props.theme.colors.fontColor};
   font-size: 1.5em;
   opacity: 0.5;
   width: 50%;
+
+  @media all and (max-width: ${mobile}) {
+    width: 100%;
+    margin: 2vw 0 0;
+  }
+  @media all and (min-width: ${mobile}) and (max-width: ${medium}) {
+    margin: 5vw 0 0;
+  }
 `

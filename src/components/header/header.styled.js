@@ -100,12 +100,10 @@ export const NavBtn = styled.button`
     -ms-transform: translateX(-1vw);
   }
 `
-export const ToggleTheme = styled.button`
+export const ToggleTheme = styled.input`
   @supports (-webkit-appearance: none) or (-moz-appearance: none) {
-    input[type="checkbox"] {
-      -webkit-appearance: none;
-      -moz-appearance: none;
-    }
+    -webkit-appearance: none;
+    -moz-appearance: none;
   }
   width: 50px;
   border-radius: 50px;
@@ -114,6 +112,9 @@ export const ToggleTheme = styled.button`
   border: none;
   position: relative;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  -webkit-align-items: center;
 
   :focus {
     outline: none;
@@ -121,19 +122,21 @@ export const ToggleTheme = styled.button`
   :after {
     content: "";
     display: block;
-    position: absolute;
-    top: 3px;
-    left: 4px;
-    transform: translateX(5px);
-    -webkit-transform: translateX(5px);
-    -ms-transform: translateX(5px);
-    background-color: #fff;
-    height: 18px;
-    border-radius: 50px;
-    width: 18px;
+    width: 15px;
+    height: 15px;
+    background-color: #ffffff;
+    border-radius: 20px;
+    margin: 0 0 0 6px;
+    transition: 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+    -webkit-transition: 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+    -o-transition: 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
   }
-  :checked {
-    background: rgb(112, 112, 112);
+  :checked:after {
+    background-color: #000;
+    transform: translateX(150%);
+    transition: 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+    -webkit-transition: 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+    -o-transition: 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
   }
 `
 
@@ -175,6 +178,8 @@ export const BurgerIcon = styled.div`
       transform: ${props =>
         props.menu === false ? null : "translateX(5px) rotate(45deg)"};
       transition: 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+      -webkit-transition: 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+      -o-transition: 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
       width: ${props => (props.menu === false ? "40%" : "45%")};
       transform-origin: 0 50%;
     }

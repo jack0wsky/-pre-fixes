@@ -22,10 +22,33 @@ export const HomeContent = styled.section`
   -webkit-align-items: center;
   justify-content: space-evenly;
 
+  a {
+    width: 35%;
+    height: 70px;
+    display: inherit;
+    align-items: inherit;
+    -webkit-align-items: inherit;
+    @media all and (max-width: ${mobile}) {
+      width: 100%;
+      margin: 5vw 0 0;
+    }
+    @media all and (max-height: ${mobile}) and (orientation: landscape) {
+      width: 100%;
+      height: 40%;
+    }
+    @media all and (max-width: ${mobile}) and (max-width: ${medium}) {
+      align-items: center;
+    }
+
+    @media all and (min-width: ${mobile}) and (max-width: ${medium}) {
+      width: 50%;
+    }
+  }
+
   @media all and (max-width: ${mobile}) {
     height: 90%;
     justify-content: flex-start;
-    width: 80%;
+    width: 90%;
   }
   @media all and (min-width: ${mobile}) and (max-width: ${medium}) {
     height: 70%;
@@ -52,7 +75,6 @@ export const GreenShape = styled.div`
   width: 45%;
   height: 62%;
   background-color: ${props => props.theme.colors.backgroundGreen};
-  //background-color:
   border-radius: 0 50px 0 0;
 
   @media all and (max-width: ${mobile}) {
@@ -96,6 +118,21 @@ export const ContentHead = styled.section`
   h2:nth-child(2) {
     width: 10vw;
   }
+  @media all and (max-width: ${mobile}) {
+    height: 30vh;
+    width: 100%;
+    flex-flow: column;
+    -webkit-flex-flow: column;
+    align-items: center;
+    -webkit-align-items: center;
+    h2:nth-child(2) {
+     width: 20vw;
+    }
+  }
+  @media all and (max-height: ${mobile}) and (orientation: landscape) {
+    width: 100%;
+   
+  }
   @media all and (max-width: 1401px) {
     h2:nth-child(2) {
       width: 20vw;
@@ -109,6 +146,10 @@ export const Title = styled.h2`
   color: ${props => props.theme.colors.fontColor};
   @media all and (max-width: ${mobile}) {
     font-size: 3.2em;
+  }
+  
+  @media all and (max-height: ${mobile}) and (max-height: ${mobile}) {
+    font-size: 2.5em; 
   }
 `
 export const SearchInput = styled.input`
@@ -140,6 +181,12 @@ export const SearchInput = styled.input`
     height: 70px;
     margin: 5vw 0 5vw;
   }
+  @media all and (max-height: ${mobile}) and (orientation: landscape) {
+    height: 70px;
+  }
+  @media all and (max-width: ${mobile}) and (max-height: ${mobile}) {
+    height: 60px;
+  }
   @media all and (min-width: ${mobile}) and (max-width: ${medium}) {
     width: 50%;
   }
@@ -150,8 +197,8 @@ export const Or = styled.p`
   z-index: 2;
 `
 export const ActionBtn = styled.button`
-  width: 35%;
-  height: 60px;
+  width: 100%;
+  height: 100%;
   border: none;
   background-color: #239695;
   color: #fff;
@@ -167,14 +214,21 @@ export const ActionBtn = styled.button`
   justify-content: center;
   -webkit-justify-content: center;
   transition: transform 0.4s ease-in-out;
+  -webkit-transition: transform 0.4s ease-in-out;
+  -o-transition: transform 0.4s ease-in-out;
   overflow: hidden;
+  padding: 20px 40px 20px;
 
   :focus {
     outline: none;
   }
   :hover {
     transition: transform 0.4s ease-in-out;
+    -webkit-transition: transform 0.4s ease-in-out;
+    -o-transition: transform 0.4s ease-in-out;
     transform: scale(1.05);
+    -webkit-transform: scale(1.05);
+    -ms-transform: scale(1.05);
   }
 
   :before {
@@ -198,8 +252,15 @@ export const ActionBtn = styled.button`
     height: 70px;
     margin: 5vw 0 5vw;
   }
+
+  @media all and (max-width: ${mobile}) and (max-height: ${mobile}) {
+    font-size: 1em;
+    :before {
+      left: -25vw;
+    }
+  }
   @media all and (min-width: ${mobile}) and (max-width: ${medium}) {
-    width: 50%;
+    width: 100%;
   }
 `
 export const Icon = styled.img`
