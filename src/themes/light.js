@@ -7,5 +7,6 @@ export default {
     backgroundGreen: "rgb(35, 150, 149, 0.15)",
     resultBackground: "#ffffff",
     code: "#00ffa4",
+    infoColor: "#cdcdcd",
   },
 }

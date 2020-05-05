@@ -1,11 +1,12 @@
 import React from "react"
 import { createGlobalStyle } from "styled-components"
 import Header from "./header/header"
+import { Helmet } from "react-helmet"
 import JetBrainsMedium from "../fonts/woff/JetBrainsMono-Medium.woff"
 import JetBrainsMedium2 from "../fonts/woff2/JetBrainsMono-Medium.woff2"
 import Montserrat700Woff2 from "../fonts/montserrat/montserrat-v14-latin-700.woff2"
 import Montserrat700Woff from "../fonts/montserrat/montserrat-v14-latin-700.woff"
-import Footer from './footer/footer'
+import Footer from "./footer/footer"
 //import "./layout.css"
 
 const GlobalStyle = createGlobalStyle`
@@ -42,6 +43,14 @@ const Layout = ({ children }) => {
     <>
       <GlobalStyle />
       <Header />
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>-pre-fixes | Web app for cross-browser compatible apps</title>
+        <meta
+          name="description"
+          content="Use vendor prefixes to make your web app Chrome, Firefox, Opera and Safari compatible."
+        />
+      </Helmet>
       {children}
       <Footer />
     </>

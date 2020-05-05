@@ -3,7 +3,7 @@ import { mobile, medium } from "../components/breakpoints/breakpoints"
 
 export const ExploreWrapper = styled.main`
   width: 100vw;
-  height: 90vh;
+  height: 80vh;
   display: flex;
   background-color: ${props => props.theme.colors.background};
   @media all and (max-width: ${mobile}) {
@@ -117,7 +117,7 @@ export const Welcome = styled.section`
 export const WelcomeTitle = styled.h3`
   font-size: 3em;
   color: ${props => props.theme.colors.fontColor};
-  
+
   @media all and (min-width: ${mobile}) and (max-width: ${medium}) {
     font-size: 2.5em;
   }

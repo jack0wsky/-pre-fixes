@@ -11,6 +11,7 @@ import {
   CodeComment,
   Hint,
 } from "./exploreTab.styled"
+import NoPrefixes from "../noPrefixes/noprefixes"
 
 const ExploreStyle = ({
   selectedVendor,
@@ -18,7 +19,7 @@ const ExploreStyle = ({
   copyCode,
   changeSyntax,
   handleSyntax,
-  copied
+  copied,
 }) => {
   return (
     <Content>
@@ -40,27 +41,35 @@ const ExploreStyle = ({
       </SwitchCode>
       {changeSyntax ? (
         <Props>
-          <Code onClick={e => copyCode(e)}>
-            {selectedVendor.properties.map(prop => {
-              return (
-                <span key={prop.key}>
-                  {prop.prop}
-                  <CodeComment>/*value*/</CodeComment>;
-                </span>
-              )
-            })}
-          </Code>
+          {selectedVendor.properties.length > 0 ? (
+            <Code onClick={e => copyCode(e)}>
+              {selectedVendor.properties.map(prop => {
+                return (
+                  <span key={prop.key}>
+                    {prop.prop}
+                    <CodeComment>/*value*/</CodeComment>;
+                  </span>
+                )
+              })}
+            </Code>
+          ) : (
+            <NoPrefixes func={false} type="prefixes" />
+          )}
           <Hint>{copied}</Hint>
         </Props>
       ) : (
         <Props>
-          {selectedVendor.scss.map(scss => {
-            return (
-              <pre key={scss.key}>
-                <Code>{scss.code}</Code>
-              </pre>
-            )
-          })}
+          {selectedVendor.scss.length > 0 ? (
+            selectedVendor.scss.map(scss => {
+              return (
+                <pre key={scss.key}>
+                  <Code>{scss.code}</Code>
+                </pre>
+              )
+            })
+          ) : (
+            <NoPrefixes func={true} />
+          )}
         </Props>
       )}
     </Content>

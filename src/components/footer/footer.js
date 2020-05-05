@@ -11,7 +11,7 @@ const Footer = () => {
     <FooterWrapper>
       <Note>
         Made with <Emoji height={20} src={heartIcon} alt="green-heart" /> by{" "}
-        <Link target="_blank" href="https://www.facebook.com/45human/">
+        <Link target="_blank" href="https://45human.pl">
           45human
         </Link>
       </Note>
